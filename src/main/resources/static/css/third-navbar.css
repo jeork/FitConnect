@@ -1,0 +1,50 @@
+/* 배경 설정 */
+body {
+    background-color: rgba(28, 30, 34);
+}
+
+/* 네비게이션 탭 스타일 */
+.nav-tabs {
+    background-color: rgba(28, 30, 34);
+    border-bottom: none;
+}
+
+.nav-tabs .nav-item {
+    margin-bottom: 0;
+}
+
+.nav-tabs .nav-link {
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+}
+
+.nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: #e75100;
+    border: none;
+}
+
+/* 비활성화된 탭의 가시성 향상 */
+.nav-tabs .nav-link:not(.active) {
+    opacity: 0.7;
+}
+
+.nav-tabs .nav-link:not(.active):hover {
+    opacity: 1;
+}
+
+/* 탭 내용 영역 스타일 */
+.tab-content {
+    background-color: rgba(28, 30, 34);
+    color: #ffffff;
+    padding: 20px;
+}

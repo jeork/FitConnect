@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error Page</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/static/css/bootstrap.min.css}"
+    />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/static/css/tooplate-gymso-style.css}"
+    />
+    <style>
+      body {
+        background-color: #1c1c1c;
+        color: #ffffff;
+      }
+      .error-container {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .error-content {
+        background-color: rgba(52, 58, 64, 0.8);
+        border-radius: 10px;
+        padding: 30px;
+        text-align: center;
+        max-width: 500px;
+      }
+      .error-code {
+        font-size: 72px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      .error-message {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      .error-description {
+        margin-bottom: 30px;
+      }
+      .back-home {
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        display: inline-block;
+        margin-top: 20px;
+      }
+      .back-home:hover {
+        background-color: #0056b3;
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error-container">
+      <div class="error-content">
+        <div class="error-code" th:text="${status}">500</div>
+        <div class="error-message" th:text="${error}">
+          Internal Server Error
+        </div>
+        <p class="error-description" th:text="${message}">
+          죄송합니다. 오류가 발생했습니다.
+        </p>
+        <a href="/" class="back-home">홈으로 돌아가기</a>
+      </div>
+    </div>
+  </body>
+</html>

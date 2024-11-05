@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+
+    <!-- Tooplate Gymso 스타일시트 -->
+    <link rel="stylesheet" type="text/css" href="../static/css/tooplate-gymso-style.css">
+    
+    <title>프로필 입력</title>
+
+    <style>
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* 6개의 열로 배치 */
+            gap: 10px; /* 각 항목 간의 간격 설정 */
+        }
+    </style>
+</head>
+<body>
+    <nav th:replace="~{navbar :: navbarFragment}"></nav>
+    
+    <div class="container">
+        <div class="profile-container">
+            <h1>유저 프로필 입력</h1>
+            <form action="/food/save_profile" method="post">
+                <input type="hidden" name="username" th:value="${#authentication.name}">
+
+                <!-- 만 나이, 신장, 체중 입력 필드 -->
+                <div class="form-group">
+                    <input type="number" name="age" class="form-control" placeholder="만 나이">
+                </div>
+                <div class="form-group">
+                    <input type="number" name="height" class="form-control" placeholder="신장">
+                </div>
+                <div class="form-group">
+                    <input type="number" name="weight" class="form-control" placeholder="체중">
+                </div>
+
+                <!-- 성별 선택 -->
+                <div class="form-group">
+                    <label class="radio-inline"><input type="radio" name="gender" value="male" required> 남성</label>
+                    <label class="radio-inline"><input type="radio" name="gender" value="female" required> 여성</label>
+                </div>
+
+                <!-- 카테고리 입력 -->
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="preferredCategories" value="1"> 밥류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="2"> 과자류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="3"> 국물류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="4"> 두부류묵류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="5"> 떡류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="6"> 만두류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="7"> 면류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="9"> 빙과류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="10"> 빵류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="11"> 샌드위치류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="12"> 샐러드류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="13"> 생채·무침류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="14"> 수산가공식품류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="15"> 식육가공품 및 육류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="16"> 알가공품류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="17"> 유제품류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="18"> 음료류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="19"> 잼류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="20"> 전·적 및 부침류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="21"> 절임류조림류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="22"> 즉석식품류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="23"> 코코아초콜릿류</label>
+                    <label><input type="checkbox" name="preferredCategories" value="24"> 햄버거류</label>
+                </div>
+                
+                <!-- 저장 버튼 -->
+                <div class="form-group">
+                    <button type="submit" class="btn custom-btn bg-color">저장</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap 및 Popper.js -->
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/popper.min.js"></script>
+    <script src="../static/bootstrap.min.js"></script>
+</body>
+</html>

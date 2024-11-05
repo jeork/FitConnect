@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta
+      name="viewport"
+      content="width=device-width , initial-scale=1, shrink-to-fit=no"
+  />
+  <!-- Bootstrap CSS -->
+  <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/static/css/bootstrap.min.css}"
+  />
+  <!-- Custom CSS -->
+  <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/static/css/my_goal.css}"
+  />
+  <!-- Tooplate Gymso CSS -->
+  <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/static/css/tooplate-gymso-style.css}"
+  />
+  <script th:src="@{/static/js/jquery.min.js}"></script>
+  <title>운동 기록</title>
+  <style>
+    .modal-header {
+      background-color: #fffb80;
+    }
+
+    .modal-content {
+      background: #fffb80;
+      text-align: center;
+    }
+
+    .routine-list {
+      border: /*solid black 1px*/ #f4f6ff;
+      border-radius: 15px;
+      margin: 0 auto 5px;
+      padding: 2px;
+      background-color: #d3ee98;
+      width: 50%;
+    }
+
+    .routine-list:hover {
+      cursor: pointer;
+      background: #a0d683;
+    }
+
+    .workout-completed {
+      background-image: url("../static/images/workout_completed_icon.png");
+    }
+
+    .content-wrapper {
+      padding-top: 80px; /* 네비게이션 바의 높이에 따라 조정 */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+<nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+<div class="hero" id="home">
+  <div class="bg-overlay"></div>
+  <div class="container content-wrapper">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-8">
+        <div class="content-wrap">
+          <div class="content-left">
+            <div class="main-wrap">
+              <div id="main-day" class="main-day"></div>
+              <div id="main-date" class="main-date"></div>
+              <div id="main-content" class="main-content"></div>
+            </div>
+          </div>
+          <div class="content-right">
+            <table id="calendar">
+              <thead>
+              <tr class="btn-wrap clearfix">
+                <td>
+                  <label id="prev"> &#60; </label>
+                </td>
+                <td colspan="5" id="current-year-month"></td>
+                <td>
+                  <label id="next"> &#62; </label>
+                </td>
+              </tr>
+              <tr>
+                <td class="sun">Sun</td>
+                <td>Mon</td>
+                <td>Tue</td>
+                <td>Wed</td>
+                <td>Thu</td>
+                <td>Fri</td>
+                <td class="sat">Sat</td>
+              </tr>
+              </thead>
+              <tbody id="calendar-body" class="calendar-body"></tbody>
+            </table>
+            <div class="button-container">
+              <button
+                  id="workout-record-btn"
+                  type="button"
+                  onclick="showRoutineModal()"
+              >
+                운동 기록하기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--모달 HTML-->
+<div
+    class="modal fade"
+    id="routineModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="routineModalLabel"
+    aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document" id="modal-container">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="routineModalLabel">
+          운동 기록 <span id="modal-selected-date"></span>
+        </h5>
+        <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <!--모달창-->
+      <div class="modal-body" id="modal-body-routine-list">
+        <h3>루틴 목록</h3>
+        <div class="routine-content">
+          <div
+              class="routine-list"
+              th:each="routine : ${routines}"
+              onclick="displaySelectedRoutine(this)"
+          >
+            <p
+                id="userName"
+                class="sr-only"
+                th:text="${routine.siteUser.username}"
+            ></p>
+            <h5
+                class="mb-1"
+                th:text="${routine.routine_name}"
+                th:id="${routine.routineNum}"
+            ></h5>
+            <div class="routine-list-item">
+              <div th:each="workout : ${routine.workouts}">
+                <p
+                    class="mb-1"
+                    th:text="${workout.workout_name} + ' x'+ ${workout.workoutSet.size()}"
+                ></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form id="routine-form" method="post" th:object="${routineUpdateDto}">
+        <input
+            type="hidden"
+            name="${_csrf.parameterName}"
+            value="${_csrf.token}"
+            id="csrfToken"
+        />
+
+        <div class="modal-body d-none" id="modal-body-make-routine">
+          <div id="routine" th:each="routine : ${routines}">
+            <div class="record" th:id="record+${routine.routineNum}">
+              <div class="record-item">
+                <div style="display: flex; justify-content: space-between">
+                  <h5 class="mb-1" th:text="${routine.routine_name}"></h5>
+                  <h5
+                      class="mb-1 sr-only"
+                      th:text="${routine.routineNum}"
+                  ></h5>
+                  <input
+                      type="hidden"
+                      name="routine_name"
+                      value="${routine.routine_name}"
+                  />
+                  <input
+                      type="hidden"
+                      name="routine_id"
+                      value="${routine.routineNum}"
+                  />
+                  <button
+                      class="btn btn-secondary mb-1"
+                      type="button"
+                      onclick="switchToRoutineList()"
+                  >
+                    <-
+                  </button>
+                </div>
+                <div class="workout-list">
+                  <div
+                      class="workout-item"
+                      th:each="workout : ${routine.workouts}"
+                  >
+                    <table class="workout-table">
+                      <h5
+                          class="mb-1"
+                          th:text="${workout.workout_name}"
+                          style="font-weight: bold"
+                      ></h5>
+                      <h5
+                          class="sr-only"
+                          th:text="${workout.workoutNum}"
+                      ></h5>
+                      <tr>
+                        <td>세트</td>
+                        <td>무게</td>
+                        <td>횟수</td>
+                        <td></td>
+                      </tr>
+                      <tr class="workout-table-tr">
+                        <td style="width: 50px">
+                          <p class="mb-1 workout-sets" name="sets-id[]">
+                            1
+                          </p>
+                        </td>
+                        <td style="width: 100px">
+                          <input
+                              class="workout-record-input"
+                              type="number"
+                              name="weight[]"
+                          />
+                        </td>
+                        <td style="width: 100px">
+                          <input
+                              class="workout-record-input"
+                              type="number"
+                              name="reps[]"
+                          />
+                        </td>
+                        <td style="width: 20px">
+                          <button
+                              class="btn xbtn"
+                              style="visibility: hidden"
+                              type="button"
+                              onclick="removeSet(this)"
+                          >
+                            &times;
+                          </button>
+                        </td>
+                      </tr>
+                    </table>
+                    <button
+                        class="btn"
+                        type="button"
+                        onclick="addSet(this)"
+                        style="color: #2107e0; font-weight: bold"
+                    >
+                      세트 추가
+                    </button>
+                  </div>
+                  <br/>
+                  <button
+                      class="btn btn-success"
+                      type="button"
+                      onclick="saveRoutine(this.closest('.record'))"
+                  >
+                    저장
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--운동 데이터 정보-->
+<div th:each="completeDate : ${completedDates}">
+  <input type="hidden" th:value="${completeDate}" class="completeDate"/>
+</div>
+<div th:each="completedDateRoutine : ${completedDateRoutines}" th:id = "${completedDateRoutine[0]}" style="display: none;">
+  <p th:text="${completedDateRoutine[1]}"></p>
+  <p>운동 완료!</p>
+</div>
+
+
+<script th:inline="javascript" defer>
+  var currentTitle = document.getElementById("current-year-month");
+  var calendarBody = document.getElementById("calendar-body");
+  var mainDay = document.getElementById("main-day");
+  var mainDate = document.getElementById("main-date");
+  var mainContent = document.getElementById("main-content");
+  var today = new Date();
+  var first = new Date(today.getFullYear(), today.getMonth(), 1);
+  var dayList = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  var monthList = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  var leapYear = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  var notLeapYear = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  var pageYear;
+  var initDate =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+  var selected_date = initDate;
+  var routineId;
+  var userName = document.getElementById("userName").innerText;
+  console.log(userName);
+
+  if (first.getFullYear() % 4 === 0) {
+    pageYear = leapYear;
+  } else {
+    pageYear = notLeapYear;
+  }
+
+  function displaySelectedRoutine(element) {
+    const routineH5 = element.querySelector("h5");
+    routineId = routineH5.id;
+    const record = document.getElementsByClassName("record");
+
+    for (let i = 0; i < record.length; i++) {
+      if (record[i].id != "record" + routineId) {
+        record[i].classList.add("d-none");
+      } else {
+        record[i].classList.remove("d-none");
+      }
+    }
+    // 모달 전환
+    document
+    .getElementById("modal-body-routine-list")
+    .classList.add("d-none");
+    document
+    .getElementById("modal-body-make-routine")
+    .classList.remove("d-none");
+  }
+
+  // 루틴목록으로 돌아가기 버튼
+
+  function switchToRoutineList() {
+    document
+    .getElementById("modal-body-routine-list")
+    .classList.remove("d-none");
+    document
+    .getElementById("modal-body-make-routine")
+    .classList.add("d-none");
+  }
+
+  // 운동 기록하기 버튼 클릭 이벤트
+  // 모달 생성
+  function showRoutineModal() {
+    $("#routineModal").modal("show");
+    document.getElementById("modal-selected-date").textContent =
+        selected_date;
+    // 루틴목록 보여주기
+    document
+    .getElementById("modal-body-routine-list")
+    .classList.remove("d-none");
+    document
+    .getElementById("modal-body-make-routine")
+    .classList.add("d-none");
+  }
+
+  // 세트 추가
+  function addSet(button) {
+    const workoutItem = button.closest(".workout-item");
+    const workoutTable = workoutItem.querySelector("table");
+
+    const newRow = document.createElement("tr");
+    newRow.className = "workout-table-tr";
+    newRow.innerHTML = `
+        <td style="width:50px ">
+            <p class="mb-1 workout-sets" name = "sets-id[]">${workoutTable.rows.length}</p>
+        </td>
+        <td style="width: 100px">
+            <input class="workout-record-input" type="number" name="weight[]">
+        </td>
+        <td style="width: 100px">
+            <input class="workout-record-input" type="number" name="reps[]">
+        </td>
+        <td style="width: 20px">
+            <button class="btn xbtn" onclick="removeSet(this)">&times;</button>
+        </td>
+    `;
+    workoutTable.appendChild(newRow);
+    updateSetNumbers(workoutItem);
+  }
+
+  // 세트 제거
+  function removeSet(button) {
+    const workoutItem = button.closest(".workout-item"); // workout-item 찾기
+    const workoutTableRow = button.closest(".workout-table-tr"); // 세트 행 찾기
+
+    if (workoutTableRow) {
+      workoutTableRow.remove(); // 현재 세트 제거
+      updateSetNumbers(workoutItem); // 세트 번호 업데이트
+    }
+  }
+
+  // 루틴 기록
+  function saveRoutine(selectedRoutine) {
+    const csrfToken = document.getElementById("csrfToken").value;
+
+    const routineDiv = selectedRoutine.querySelectorAll("h5");
+    const routineName = routineDiv[0].innerText;
+    const routineId = routineDiv[1].innerText;
+
+    const date = selected_date;
+    const workouts = [];
+
+    const workoutItems = selectedRoutine.querySelectorAll(".workout-item");
+
+    workoutItems.forEach((workoutItem) => {
+      const workoutDiv = workoutItem.querySelectorAll("h5");
+      const workoutName = workoutDiv[0].innerText;
+      const workoutId = workoutDiv[1].innerText;
+
+      const weights = workoutItem.querySelectorAll(
+          'input[name="weight[]"]'
+      );
+      const reps = workoutItem.querySelectorAll('input[name="reps[]"]');
+      const sets = [];
+      weights.forEach((weightInput, index) => {
+        sets.push({
+          weight: weightInput.value,
+          reps: reps[index].value,
+        });
+      });
+
+      workouts.push({
+        workout_name: workoutName,
+        id: workoutId,
+        workoutSet: sets,
+      });
+    });
+
+    const routineData = {
+      id: routineId,
+      date: date,
+      routine_name: routineName,
+      workouts: workouts,
+      workout_completed: true,
+      username: userName,
+    };
+
+    // AJAX 요청을 통해 서버에 데이터 전송
+    fetch("/workout/record_routine", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": csrfToken,
+      },
+      body: JSON.stringify(routineData), // routineData 객체를 전송
+    })
+    .then((response) => {
+      if (response.ok) {
+        const calendarCell = document.getElementById(
+            selected_date.split("-")[2]
+        );
+        calendarCell.classList.add("workout-completed");
+        alert("운동 기록이 저장되었습니다!");
+
+        location.reload(); // 페이지 새로고침
+      } else {
+        alert("운동 기록 저장에 실패했습니다.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert("저장 중 오류가 발생했습니다.");
+    });
+
+  }
+
+  function workoutCompleted() {
+    const dateTd = document.getElementById("current-year-month").innerText;
+    const month = dateTd.split(" ")[0];
+    const monthNum = monthList.findIndex((m) => m === month) + 1;
+    console.log(monthNum);
+    const yearNum = dateTd.split(" ")[1];
+    const tbody = document.getElementById("calendar-body");
+    const dayTds = tbody.querySelectorAll("td");
+
+    document.querySelectorAll(".completeDate").forEach((date) => {
+      var year = date.value.split("-")[0];
+      var month = date.value.split("-")[1];
+      var day = date.value.split("-")[2];
+
+      dayTds.forEach((dayTd) => {
+        if (yearNum == year && monthNum == month && dayTd.id == day) {
+          dayTd.classList.add("workout-completed");
+        }
+      });
+    });
+  }
+
+  // 모달 닫기 함수
+  function closeModal() {
+    $("#routineModal").modal("hide");
+  }
+
+  // 세트번호 업데이트
+  function updateSetNumbers(workoutContainer) {
+    const rows = workoutContainer.querySelectorAll(".workout-table-tr"); // 모든 세트 행 가져오기
+    const xbtn = workoutContainer.getElementsByClassName("xbtn");
+
+    if (rows.length <= 1) {
+      xbtn[0].style.visibility = "hidden";
+    } else {
+      xbtn[0].style.visibility = "visible";
+    }
+
+    rows.forEach((row, index) => {
+      const cell = row.querySelector(".workout-sets"); // 세트 번호를 표시하는 셀
+      if (cell) {
+        cell.textContent = index + 1; // 세트 번호를 1부터 시작하도록 설정
+      }
+    });
+  }
+
+  function showCalendar() {
+    let monthCnt = 100;
+    let cnt = 1;
+    for (var i = 0; i < 6; i++) {
+      var $tr = document.createElement("tr");
+      $tr.setAttribute("id", monthCnt);
+      for (var j = 0; j < 7; j++) {
+        if (
+            (i === 0 && j < first.getDay()) ||
+            cnt > pageYear[first.getMonth()]
+        ) {
+          var $td = document.createElement("td");
+          $tr.appendChild($td);
+        } else {
+          var $td = document.createElement("td");
+          $td.textContent = cnt;
+          if (cnt < 10) {
+            $td.setAttribute("id", "0" + cnt);
+          } else {
+            $td.setAttribute("id", cnt);
+          }
+
+          if (
+              cnt === today.getDate() &&
+              first.getMonth() === today.getMonth() &&
+              first.getFullYear() === today.getFullYear()
+          ) {
+            $td.classList.add("active");
+          }
+
+          $tr.appendChild($td);
+          cnt++;
+        }
+      }
+      monthCnt++;
+      calendarBody.appendChild($tr);
+    }
+    // 운동 완료 날짜 하이라이트
+    workoutCompleted();
+  }
+
+  function removeCalendar() {
+    let catchTr = 100;
+    for (var i = 100; i < 106; i++) {
+      var $tr = document.getElementById(catchTr);
+      if ($tr) {
+        $tr.remove();
+      }
+      catchTr++;
+    }
+  }
+
+  function showMain() {
+    mainDay.innerHTML = dayList[today.getDay()];
+    mainDate.innerHTML = today.getDate()
+    const selectedDate = document.getElementById(selected_date);
+    if (selectedDate) {
+      mainContent.innerHTML = selectedDate.innerHTML;
+    } else {
+      mainContent.innerHTML = "";
+    }
+  }
+
+  console.log("showCalendar 실행");
+
+  // 현재 년월 표시
+  currentTitle.textContent =
+      monthList[first.getMonth()] + " " + first.getFullYear();
+  showCalendar();
+  showMain();
+
+  // 이전 달, 다음 달 이동
+  document.getElementById("prev").addEventListener("click", function () {
+    removeCalendar();
+    today = new Date(
+        first.getFullYear(),
+        first.getMonth() - 1,
+        today.getDate()
+    );
+    first = new Date(today.getFullYear(), today.getMonth(), 1);
+    currentTitle.textContent =
+        monthList[first.getMonth()] + " " + first.getFullYear();
+    showCalendar();
+    showMain();
+  });
+
+  document.getElementById("next").addEventListener("click", function () {
+    removeCalendar();
+    today = new Date(
+        first.getFullYear(),
+        first.getMonth() + 1,
+        today.getDate()
+    );
+    first = new Date(today.getFullYear(), today.getMonth(), 1);
+    currentTitle.textContent =
+        monthList[first.getMonth()] + " " + first.getFullYear();
+    showCalendar();
+    showMain();
+  });
+
+  // 날짜 클릭 이벤트
+  calendarBody.addEventListener("click", function (e) {
+    if (e.target.tagName === "TD" && e.target.textContent !== "") {
+      let active = document.querySelector(".active");
+      selected_date =
+          first.getFullYear() +
+          "-" +
+          (first.getMonth() + 1) +
+          "-" +
+          e.target.id;
+      if (active) {
+        active.classList.remove("active");
+      }
+      e.target.classList.add("active");
+      today = new Date(
+          first.getFullYear(),
+          first.getMonth(),
+          e.target.textContent
+      );
+
+      console.log(selected_date);
+
+      showMain();
+      // loadTodoList();
+    }
+  });
+
+  // // Todo 리스트
+  // var inputBox = document.getElementById("input-box");
+  // var inputDate = document.getElementById("input-data");
+  // var inputList = document.getElementById("input-list");
+  //
+  // inputDate.addEventListener("click", addTodoList);
+  //
+  // var todoList = {};
+  //
+  // function addTodoList() {
+  //   var key = generateDateKey(today);
+  //   if (inputBox.value !== "") {
+  //     if (!todoList[key]) {
+  //       todoList[key] = [];
+  //     }
+  //     todoList[key].push(inputBox.value);
+  //     inputBox.value = "";
+  //     loadTodoList();
+  //   }
+  // }
+  //
+  // function loadTodoList() {
+  //   var key = generateDateKey(today);
+  //   inputList.innerHTML = "";
+  //   if (todoList[key]) {
+  //     todoList[key].forEach(function (todo, index) {
+  //       var $div = document.createElement("div");
+  //       $div.textContent = todo;
+  //       var $btn = document.createElement("button");
+  //       $btn.textContent = "X";
+  //       $btn.addEventListener("click", function () {
+  //         todoList[key].splice(index, 1);
+  //         loadTodoList();
+  //       });
+  //       inputList.appendChild($div);
+  //       inputList.appendChild($btn);
+  //     });
+  //   }
+  // }
+
+  function generateDateKey(date) {
+    return (
+        date.getFullYear() +
+        "-" +
+        (date.getMonth() + 1) +
+        "-" +
+        date.getDate()
+    );
+  }
+
+  // Todo 리스트 관련 변수와 함수
+  var inputBox = document.getElementById("input-box");
+  var inputDate = document.getElementById("input-data");
+  var inputList = document.getElementById("input-list");
+
+  // inputDate.addEventListener("click", addTodoList);
+
+  var todoList = {};
+
+  function addTodoList() {
+    var key = generateDateKey(today);
+    if (inputBox.value !== "") {
+      if (!todoList[key]) {
+        todoList[key] = [];
+      }
+      todoList[key].push(inputBox.value);
+      inputBox.value = "";
+      loadTodoList();
+    }
+  }
+
+  // function loadTodoList() {
+  //   var key = generateDateKey(today);
+  //   inputList.innerHTML = "";
+  //   if (todoList[key]) {
+  //     todoList[key].forEach(function (todo, index) {
+  //       var $div = document.createElement("div");
+  //       $div.textContent = todo;
+  //       var $btn = document.createElement("button");
+  //       $btn.textContent = "X";
+  //       $btn.addEventListener("click", function () {
+  //         todoList[key].splice(index, 1);
+  //         loadTodoList();
+  //       });
+  //       inputList.appendChild($div);
+  //       inputList.appendChild($btn);
+  //     });
+  //   }
+  // }
+
+  function generateDateKey(date) {
+    return (
+        date.getFullYear() +
+        "-" +
+        (date.getMonth() + 1) +
+        "-" +
+        date.getDate()
+    );
+  }
+
+  // loadTodoList();
+</script>
+<!-- Popper.js 및 Bootstrap JavaScript 파일 4.2.1 version-->
+<script th:src="@{/static/js/jquery.min.js}"></script>
+<script th:src="@{/static/js/popper.min.js}"></script>
+<script th:src="@{/static/js/bootstrap.min.js}"></script>
+</body>
+</html>

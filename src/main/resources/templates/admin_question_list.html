@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/static/css/bootstrap.min.css}"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}" />
+    <!-- Tooplate Gymso CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/static/css/tooplate-gymso-style.css}"
+    />
+    <script th:src="@{/static/js/jquery.min.js}"></script>
+    <title>질문 관리</title>
+  </head>
+  <body>
+    <!-- 네비게이션 바 -->
+    <nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+    <div class="hero" id="home">
+      <div class="bg-overlay"></div>
+      <div class="container content-wrapper">
+        <div class="row justify-content-center">
+          <div class="col-md-10">
+            <div class="table-container">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="table-dark">
+                    <tr class="text-center">
+                      <th style="width: 10%">번호</th>
+                      <th style="width: 40%">제목</th>
+                      <th style="width: 15%">작성자</th>
+                      <th style="width: 20%">작성시간</th>
+                      <th style="width: 15%">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody style="color: white">
+                    <tr class="text-center" th:each="question : ${paging}">
+                      <td
+                        th:text="${paging.getTotalElements() - (paging.number * paging.size) - questionStat.index}"
+                      ></td>
+                      <td class="text-start">
+                        <a
+                          th:href="@{|/question/detail/${question.id}|}"
+                          th:text="${#strings.abbreviate(question.subject, 20)}"
+                          style="color: white"
+                        ></a>
+                      </td>
+                      <td
+                        th:text="${question.author != null ? question.author.username : ''}"
+                      ></td>
+                      <td
+                        th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"
+                      ></td>
+                      <td class="text-center">
+                        <div class="d-flex gap-1 justify-content-center">
+                          <a
+                            th:href="@{|/manage/question/modify/${question.id}|}"
+                            class="btn btn-sm btn-primary"
+                            >수정</a
+                          >
+                          <a
+                            th:href="@{|/manage/question/delete/${question.id}|}"
+                            class="btn btn-sm btn-danger"
+                            onclick="return confirm('정말로 이 질문을 삭제하시겠습니까?')"
+                            >삭제</a
+                          >
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="search-container">
+                <form
+                  th:action="@{/manage/question/list}"
+                  method="get"
+                  class="search-form"
+                >
+                  <div class="input-wrapper">
+                    <input
+                      type="text"
+                      name="kw"
+                      class="form-control"
+                      th:value="${kw}"
+                      placeholder="제목으로 검색"
+                    />
+                  </div>
+                  <div class="button-wrapper">
+                    <button type="submit" class="btn custom-btn">검색</button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- 페이징 처리 -->
+              <div class="pagination-container" th:if="${!paging.isEmpty()}">
+                <div class="pagination-wrapper">
+                  <a
+                    class="page-link"
+                    th:href="@{|?page=${paging.number-1}&kw=${kw}|}"
+                    th:if="${paging.hasPrevious}"
+                    >이전</a
+                  >
+                  <span
+                    th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                    th:if="${page >= paging.number-5 and page <= paging.number+5}"
+                  >
+                    <a
+                      th:text="${page + 1}"
+                      class="page-link"
+                      th:href="@{|?page=${page}&kw=${kw}|}"
+                    ></a>
+                  </span>
+                  <a
+                    class="page-link"
+                    th:href="@{|?page=${paging.number+1}&kw=${kw}|}"
+                    th:if="${paging.hasNext}"
+                    >다음</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+  </body>
+</html>

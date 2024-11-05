@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>질문 등록</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/static/css/bootstrap.min.css}"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}" />
+    <!-- Tooplate Gymso CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/static/css/tooplate-gymso-style.css}"
+    />
+    <script th:src="@{/static/js/jquery.min.js}"></script>
+    <style>
+      .content-wrapper {
+        padding-top: 80px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .form-container {
+        background-color: rgba(48, 48, 48, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .submit-button {
+        background-color: #f13a11;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .submit-button:hover {
+        background-color: #d62f0a;
+      }
+      .error-message {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 네비게이션 바 -->
+    <nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+    <div class="hero" id="home">
+      <div class="bg-overlay"></div>
+      <div class="container content-wrapper">
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-6">
+            <div class="form-container">
+              <h4 class="text-center mb-4 text-white">
+                <strong>질문 등록</strong>
+              </h4>
+              <form th:object="${questionForm}" method="post">
+                <input
+                  type="hidden"
+                  th:name="${_csrf.parameterName}"
+                  th:value="${_csrf.token}"
+                />
+
+                <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+
+                <div class="mb-3">
+                  <label for="subject" class="form-label text-white"
+                    >제목</label
+                  >
+                  <input
+                    type="text"
+                    th:field="*{subject}"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label for="content" class="form-label text-white"
+                    >내용</label
+                  >
+                  <textarea
+                    th:field="*{content}"
+                    class="form-control"
+                    rows="10"
+                  ></textarea>
+                </div>
+
+                <div class="text-center">
+                  <input
+                    type="submit"
+                    value="저장하기"
+                    class="btn submit-button w-100"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script th:src="@{/static/js/jquery.min.js}"></script>
+    <script th:src="@{/static/js/popper.min.js}"></script>
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>어깨 운동 가이드</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+        <!-- Tooplate Gymso 스타일시트 -->
+        <link rel="stylesheet" href="/static/css/tooplate-gymso-style.css" />
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/static/css/second-navbar.css" />
+        <link rel="stylesheet" href="/static/css/third-navbar.css" />
+    </head>
+    <body>
+        <!-- 네비게이션 바 -->
+        <nav th:replace="~{navbar :: navbarFragment}"></nav>
+        <nav th:replace="~{second_navbar :: second_navbarFragment}"></nav>
+        <nav th:replace="~{/workout_navbar/third_navbar_shoulder :: third_navbar_shoulderFragment}"></nav>
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/popper.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+    </body>
+</html>

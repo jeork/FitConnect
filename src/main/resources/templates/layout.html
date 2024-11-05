@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width , initial-scale=1, shrink-to-fit=no" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" th:href="@{/static/css/bootstrap.min.css}" />
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}" />
+        <!-- Tooplate Gymso CSS -->
+        <link rel="stylesheet" type="text/css" th:href="@{/static/css/tooplate-gymso-style.css}" />
+        <script th:src="@{/static/js/jquery.min.js}"></script>
+    </head>
+
+    <body>
+        <!-- 내비게이션 바 -->
+        <nav th:replace="~{navbar :: navbarFragment}"></nav>
+        <div class="hero d-flex flex-column justify-content-center align-items-center" id="home" style="position: relative; z-index: 0">
+            <!-- 오버레이 -->
+            <div
+                class="bg-overlay"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1"
+            ></div>
+
+            <!-- 텍스트나 이미지 내용 -->
+            <div class="content-section" style="z-index: 2">
+                <!-- 기본 템플릿 안에 삽입될 내용 Start -->
+                <th:block layout:fragment="content"></th:block>
+                <!-- 기본 템플릿 안에 삽입될 내용 End -->
+            </div>
+        </div>
+
+        <!-- Popper.js 및 Bootstrap JavaScript 파일 4.2.1 version-->
+        <script th:src="@{/static/js/jquery.min.js}"></script>
+        <script th:src="@{/static/js/popper.min.js}"></script>
+        <script th:src="@{/static/js/bootstrap.min.js}"></script>
+    </body>
+</html>

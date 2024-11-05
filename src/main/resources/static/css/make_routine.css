@@ -1,0 +1,97 @@
+/* 기본 스타일 초기화 */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* 컨테이너 스타일 */
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 스타일 */
+h1 {
+  color: #343a40;
+  margin-bottom: 20px;
+}
+
+/* 운동 그룹 스타일 */
+.exercise-group {
+  margin-bottom: 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f1f1f1;
+}
+
+/* 세트 헤더 스타일 */
+.set-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* 세트 컨테이너 스타일 */
+.set-container {
+  margin-bottom: 10px;
+}
+
+/* 세트 행 스타일 */
+.set-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+/* 입력 필드 스타일 */
+input.form-control {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+/* 버튼 스타일 */
+.btn {
+  margin-top: 10px;
+}
+
+/* 링크 버튼 스타일 */
+.btn-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+.modal-lg {
+  max-width: 800px;
+}
+
+/* 모든 운동 리스트 항목에 대해 스타일 설정 */
+.tab-pane ul li {
+  cursor: pointer; /* 마우스를 올렸을 때 포인터 커서로 변경 */
+  padding: 10px; /* 패딩 추가 */
+  transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 */
+  border-radius: 4px; /* 모서리 둥글게 */
+}
+
+/* 마우스를 올렸을 때의 스타일 */
+.tab-pane ul li:hover {
+  background-color: #f0f0f0; /* 배경색 변경 */
+  color: #007bff; /* 텍스트 색상 변경 */
+  font-weight: bold; /* 텍스트 두껍게 */
+}
+
+
+.hidden {
+  display: none;
+}

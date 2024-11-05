@@ -1,0 +1,89 @@
+<nav th:fragment="third_navbar_absFragment">
+    <ul class="nav nav-tabs" id="absTab" role="tablist">
+        <li class="nav-item">
+            <a
+                class="nav-link active"
+                id="leg-raise-tab"
+                data-toggle="tab"
+                href="#leg-raise-tab-pane"
+                role="tab"
+                aria-controls="leg-raise-tab-pane"
+                aria-selected="true"
+            >
+                레그 레이즈
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="crunch-tab" data-toggle="tab" href="#crunch-tab-pane" role="tab" aria-controls="crunch-tab-pane" aria-selected="false">
+                크런치
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content" id="absTabContent">
+        <div class="tab-pane fade show active" id="leg-raise-tab-pane" role="tabpanel" aria-labelledby="leg-raise-tab">
+            <div class="container mt-4">
+                <h2>레그 레이즈</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <video width="100%" autoplay loop muted playsinline>
+                            <source src="https://planfit-images.s3.ap-northeast-2.amazonaws.com/training-videos-watermarked/5001.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>시작 자세</h4>
+                        <ol>
+                            <li>바닥에 바로 누워 주세요.</li>
+                            <li>몸이 흔들리지 않게 양손으로 바닥을 짚어주세요.</li>
+                        </ol>
+                        <h4>운동 동작</h4>
+                        <ol>
+                            <li>무릎을 살짝 구부린 채 다리가 바닥과 수직이 되게 들어 올려주세요.</li>
+                            <li>다시 천천히 시작 자세로 돌아오세요.</li>
+                        </ol>
+                        <h4>호흡법</h4>
+                        <ol>
+                            <li>다리를 올릴 때 숨을 내쉬고, 다리를 내릴 때 숨을 들이쉬세요.</li>
+                        </ol>
+                        <h4>주의사항</h4>
+                        <ol>
+                            <li>만약 허리가 아프다면 허리가 뜨지 않도록 엉덩이 아래 손을 넣어주셔도 됩니다.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="crunch-tab-pane" role="tabpanel" aria-labelledby="crunch-tab">
+            <div class="container mt-4">
+                <h2>크런치</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <video width="100%" autoplay loop muted playsinline>
+                            <source src="https://planfit-images.s3.ap-northeast-2.amazonaws.com/training-videos-watermarked/5002.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>시작 자세</h4>
+                        <ol>
+                            <li>바닥에 바로 누워 무릎을 세워주세요.</li>
+                            <li>등 윗부분과 머리가 바닥에 닿지 않도록 들어주세요.</li>
+                        </ol>
+                        <h4>운동 동작</h4>
+                        <ol>
+                            <li>허리가 굽지 않는 자세로 상체 윗부분을 들어 올려주세요.</li>
+                            <li>시작 자세로 천천히 돌아오세요.</li>
+                        </ol>
+                        <h4>호흡법</h4>
+                        <ol>
+                            <li>상체를 올릴 때 숨을 내쉬고, 상체를 내릴 때 숨을 들이쉬세요.</li>
+                        </ol>
+                        <h4>주의사항</h4>
+                        <ol>
+                            <li>상체를 과도하게 들어 올리면 허리에 무리가 갈 수 있으니 허리가 뜨지 않게 상체를 들어 올려주세요.</li>
+                            <li>목이 아프다면 손으로 머리를 받쳐 목에 힘을 풀고 진행해주세요.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

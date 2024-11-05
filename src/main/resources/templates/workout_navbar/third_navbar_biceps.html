@@ -1,0 +1,151 @@
+<nav th:fragment="third_navbar_bicepsFragment">
+    <ul class="nav nav-tabs" id="bicepsTab" role="tablist">
+        <li class="nav-item">
+            <a
+                class="nav-link active"
+                id="barbell-curl-tab"
+                data-toggle="tab"
+                href="#barbell-curl-pane"
+                role="tab"
+                aria-controls="barbell-curl-pane"
+                aria-selected="true"
+            >
+                바벨 컬
+            </a>
+        </li>
+        <li class="nav-item">
+            <a
+                class="nav-link"
+                id="dumbbell-curl-tab"
+                data-toggle="tab"
+                href="#dumbbell-curl-pane"
+                role="tab"
+                aria-controls="dumbbell-curl-pane"
+                aria-selected="false"
+            >
+                덤벨 컬
+            </a>
+        </li>
+        <li class="nav-item">
+            <a
+                class="nav-link"
+                id="hammer-curl-tab"
+                data-toggle="tab"
+                href="#hammer-curl-pane"
+                role="tab"
+                aria-controls="hammer-curl-pane"
+                aria-selected="false"
+            >
+                해머 컬
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="bicepsTabContent">
+        <div class="tab-pane fade show active" id="barbell-curl-pane" role="tabpanel" aria-labelledby="barbell-curl-tab">
+            <div class="container mt-4">
+                <h2>바벨 컬</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <video width="100%" autoplay loop muted playsinline>
+                            <source src="https://planfit-images.s3.ap-northeast-2.amazonaws.com/training-videos-watermarked/7001.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>시작 자세</h4>
+                        <ol>
+                            <li>어깨너비로 서주세요.</li>
+                            <li>팔을 자연스럽게 아래로 내려 바벨을 잡아주세요. 바벨은 허벅지 바로 앞에 위치해야 합니다.</li>
+                            <li>가슴을 펴고 허리를 세워주세요.</li>
+                        </ol>
+                        <h4>운동 동작</h4>
+                        <ol>
+                            <li>팔꿈치와 어깨를 고정한 채 바벨을 들어 올려주세요.</li>
+                            <li>천천히 시작 자세로 돌아오세요.</li>
+                            <li>바벨을 내릴 때는 완전히 내리지 않고 이두에 힘이 풀리지 않을 정도로 내려주세요.</li>
+                        </ol>
+                        <h4>호흡법</h4>
+                        <ol>
+                            <li>팔을 올릴 때 숨을 내쉬고, 팔을 내릴 때 숨을 들이쉬세요.</li>
+                        </ol>
+                        <h4>주의사항</h4>
+                        <ol>
+                            <li>손목이 불편하다면 바벨을 너무 좁게 잡은 것이 이유일 수 있습니다. 그립을 조금 더 넓게 잡아보세요.</li>
+                            <li>그래도 손목이 불편하다면 이지바를 사용해주세요.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="dumbbell-curl-pane" role="tabpanel" aria-labelledby="dumbbell-curl-tab">
+            <div class="container mt-4">
+                <h2>덤벨 컬</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <video width="100%" autoplay loop muted playsinline>
+                            <source src="https://planfit-images.s3.ap-northeast-2.amazonaws.com/training-videos-watermarked/7006.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>시작 자세</h4>
+                        <ol>
+                            <li>어깨너비로 서주세요.</li>
+                            <li>손바닥이 몸을 향하도록 덤벨을 잡고 허벅지 옆에 위치시켜 주세요.</li>
+                            <li>가슴을 펴고 허리를 세워주세요.</li>
+                        </ol>
+                        <h4>운동 동작</h4>
+                        <ol>
+                            <li>팔꿈치와 어깨를 고정한 채 덤벨을 들어 올려주세요.</li>
+                            <li>최대로 올린 지점에서 손목을 살짝 바깥쪽으로 틀어 이두가 최대로 수축하게 해주세요.</li>
+                            <li>천천히 시작 자세로 돌아오세요.</li>
+                            <li>덤벨을 내릴 때는 완전히 내리지 않고 이두에 힘이 풀리지 않을 정도로 내려주세요.</li>
+                        </ol>
+                        <h4>호흡법</h4>
+                        <ol>
+                            <li>팔을 올릴 때 숨을 내쉬고, 팔을 내릴 때 숨을 들이쉬세요.</li>
+                        </ol>
+                        <h4>주의사항</h4>
+                        <ol>
+                            <li>양쪽을 한 번에 진행해도 무방하지만, 한 쪽씩 진행한다면 더 집중된 수축감을 느낄 수 있습니다.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="hammer-curl-pane" role="tabpanel" aria-labelledby="hammer-curl-tab">
+            <div class="container mt-4">
+                <h2>해머 컬</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <video width="100%" autoplay loop muted playsinline>
+                            <source src="https://planfit-images.s3.ap-northeast-2.amazonaws.com/training-videos-watermarked/7009.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>시작 자세</h4>
+                        <ol>
+                            <li>어깨너비로 서주세요.</li>
+                            <li>손바닥이 몸을 향하도록 덤벨을 잡고 허벅지 옆에 위치시켜 주세요.</li>
+                            <li>가슴을 펴고 허리를 세워주세요.</li>
+                        </ol>
+                        <h4>운동 동작</h4>
+                        <ol>
+                            <li>팔꿈치와 어깨를 고정한 채 덤벨을 들어 올려주세요.</li>
+                            <li>손목을 틀지 않고 그대로 들어 올려주세요.</li>
+                            <li>천천히 시작 자세로 돌아오세요.</li>
+                            <li>덤벨을 내릴 때는 완전히 내리지 않고 이두에 힘이 풀리지 않을 정도로 내려주세요.</li>
+                        </ol>
+                        <h4>호흡법</h4>
+                        <ol>
+                            <li>팔을 올릴 때 숨을 내쉬고, 팔을 내릴 때 숨을 들이쉬세요.</li>
+                        </ol>
+                        <h4>주의사항</h4>
+                        <ol>
+                            <li>양쪽을 한 번에 진행해도 무방하지만, 한 쪽씩 진행한다면 더 집중된 수축감을 느낄 수 있습니다.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

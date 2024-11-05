@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/static/css/bootstrap.min.css}"
+    />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/static/css/tooplate-gymso-style.css}"
+    />
+    <script th:src="@{/static/js/jquery.min.js}"></script>
+    <title>회원 정보</title>
+    <style>
+      .custom-card {
+        background-color: #f0f0f0;
+        border: none;
+        border-radius: 10px;
+      }
+      .edit-button {
+        background-color: #343a40;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+      .edit-button:hover {
+        color: rgb(241, 58, 17);
+      }
+      .user-info-section {
+        padding-top: 80px; /* 네비게이션 바 높이에 따라 조정 */
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+      @media (max-width: 768px) {
+        .user-info-section {
+          padding-top: 60px; /* 모바일에서는 패딩을 줄임 */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+    <section class="hero user-info-section" id="home">
+      <div class="bg-overlay"></div>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg p-4 custom-card">
+              <h4 class="card-title text-center mb-4">
+                <strong>회원 정보</strong>
+              </h4>
+              <p>
+                <strong>ID :</strong>
+                <span th:text="${user?.username} ?: '알 수 없음'"></span>
+              </p>
+              <p>
+                <strong>이메일 :</strong>
+                <span th:text="${user?.email} ?: '알 수 없음'"></span>
+              </p>
+              <a th:href="@{/user/modify}" class="btn edit-button">정보 수정</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script th:src="@{/static/js/jquery.min.js}"></script>
+    <script th:src="@{/static/js/popper.min.js}"></script>
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+  </body>
+</html>

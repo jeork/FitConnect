@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/tooplate-gymso-style.css">
+
+    <title>음식 추천 시스템</title>
+    <style>
+        .hero-content {
+            display: flex;
+            justify-content: center; /* 수평 가운데 정렬 */
+            align-items: center; /* 수직 가운데 정렬 */
+            flex-direction: column; /* 요소들을 수직으로 정렬 */
+            width: 100%;
+            height: 100%; /* hero 영역을 꽉 채우도록 */
+            text-align: center; /* 텍스트 가운데 정렬 */
+        }
+
+        .form-select {
+            width: 100px;
+        }
+
+        .table td {
+            vertical-align: middle;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* 전체 높이를 채움 */
+        }
+
+        /* 로딩 메세지 스타일 */
+        #loadingMessage {
+            display: none;
+            color: white;
+            font-size: 1.5em;
+        }
+
+        /* 컨텐츠 숨기기 */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav th:replace="~{navbar :: navbarFragment}"></nav>
+    
+    <div class="hero" id="home">
+        <div class="bg-overlay"></div>
+        <div class="hero-content" id="mainContent" style="z-index: 2; color:white;">
+            <!-- 메시지 및 버튼이 추천 결과가 없을 때만 보이게 -->
+            <h1 th:if="${recommendations == null}">오늘의 식단을 추천 받아보세요</h1>
+            <form action="/food/recommend" method="post" onsubmit="showLoadingMessage()" th:if="${recommendations == null}">
+                <input type="hidden" id="username" name="username" th:value="${#authentication.name}">
+                <button type="submit" class="btn custom-btn bordered">추천 요청</button>
+            </form>
+            <!-- 추천 결과 출력 -->
+            <div th:if="${recommendations != null}">
+                <h3 style="color:white;">점심 추천</h3>
+                <form action="/food/submit_rating" method="post" onsubmit="showLoadingMessage()">
+                    <input type="hidden" id="username" name="username" th:value="${#authentication.name}">
+                    <table class="table table-bordered table-hover" style="color:white;">
+                        <thead>
+                            <tr>
+                                <th>음식명</th>
+                                <th>칼로리(kcal)</th>
+                                <th>탄수화물(g)</th>
+                                <th>단백질(g)</th>
+                                <th>지방(g)</th>
+                                <th>평점</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="lunchItem : ${recommendations.lunch}">
+                                <td th:text="${lunchItem.food_name}"></td>
+                                <td th:text="${lunchItem.kcal}"></td>
+                                <td th:text="${lunchItem.carb}"></td>
+                                <td th:text="${lunchItem.protein}"></td>
+                                <td th:text="${lunchItem.fat}"></td>
+                                <td>
+                                    <input type="hidden" name="lunch_food_code[]" th:value="${lunchItem.food_code}">
+                                    <input type="hidden" name="lunch_food_number[]" th:value="${lunchItem.food_number}">
+                                    <select name="lunch_rating[]" class="form-select">
+                                        <option value="1">매우 불만족</option>
+                                        <option value="2">불만족</option>
+                                        <option value="3">보통</option>
+                                        <option value="4">만족</option>
+                                        <option value="5">매우 만족</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                    <h3 style="color:white;">저녁 추천</h3>
+                    <table class="table table-bordered table-hover" style="color:white;">
+                        <thead>
+                            <tr>
+                                <th>음식명</th>
+                                <th>칼로리(kcal)</th>
+                                <th>탄수화물(g)</th>
+                                <th>단백질(g)</th>
+                                <th>지방(g)</th>
+                                <th>평점</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="dinnerItem : ${recommendations.dinner}">
+                                <td th:text="${dinnerItem.food_name}"></td>
+                                <td th:text="${dinnerItem.kcal}"></td>
+                                <td th:text="${dinnerItem.carb}"></td>
+                                <td th:text="${dinnerItem.protein}"></td>
+                                <td th:text="${dinnerItem.fat}"></td>
+                                <td>
+                                    <input type="hidden" name="dinner_food_code[]" th:value="${dinnerItem.food_code}">
+                                    <input type="hidden" name="dinner_food_number[]" th:value="${dinnerItem.food_number}">
+                                    <select name="dinner_rating[]" class="form-select">
+                                        <option value="1">매우 불만족</option>
+                                        <option value="2">불만족</option>
+                                        <option value="3">보통</option>
+                                        <option value="4">만족</option>
+                                        <option value="5">매우 만족</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- 평점 제출 버튼 -->
+                    <div style="display: flex; justify-content: space-between;">
+                        <button type="submit" class="btn custom-btn bg-color mt-3">평점 제출</button>
+                        <!-- 다시 추천 버튼을 POST 요청을 보내는 form 안에 넣음 -->
+                    </div>
+                </form>
+                <form action="/food/recommend" method="post" onsubmit="showLoadingMessage()">
+                    <input type="hidden" id="username" name="username" th:value="${#authentication.name}">
+                    <button type="submit" class="btn custom-btn bordered mt-3">다시 추천</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 로딩 메시지 -->
+        <div id="loadingMessage" style="color:white">음식 메뉴를 구성중입니다<span id="loadingDots"></span></div>
+    </div>
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+
+    <script>
+        // 로딩 메시지 보여주기
+        function showLoadingMessage() {
+            // 모든 컨텐츠 숨기기
+            document.getElementById('mainContent').classList.add('hidden');
+            
+            // 로딩 메시지 보이기
+            document.getElementById('loadingMessage').style.display = 'block';
+
+            // 로딩 도트 애니메이션
+            let dots = 0;
+            setInterval(() => {
+                const dotElement = document.getElementById('loadingDots');
+                dotElement.textContent = '.'.repeat(dots);
+                dots = (dots + 1) % 4; // 0, 1, 2, 3 반복
+            }, 500);
+        }
+    </script>
+</body>
+</html>

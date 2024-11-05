@@ -1,0 +1,293 @@
+<nav th:fragment="third_navbar_backFragment">
+    <ul class="nav nav-tabs" id="backTab" role="tablist">
+        <li class="nav-item">
+            <a
+                class="nav-link active"
+                id="dead-lift-tab"
+                data-toggle="tab"
+                href="#dead-lift-tab-pane"
+                role="tab"
+                aria-controls="dead-lift-tab-pane"
+                aria-selected="true"
+            >
+                데드 리프트
+            </a>
+        </li>
+        <li class="nav-item">
+            <a
+                class="nav-link"
+                id="barbell-row-tab"
+                data-toggle="tab"
+                href="#barbell-row-tab-pane"
+                role="tab"
+                aria-controls="barbell-row-tab-pane"
+                aria-selected="false"
+            >
+                바벨 로우
+            </a>
+        </li>
+        <li class="nav-item">
+            <a
+                class="nav-link"
+                id="dumbbell-row-tab"
+                data-toggle="tab"
+                href="#dumbbell-row-tab-pane"
+                role="tab"
+                aria-controls="dumbbell-row-tab-pane"
+                aria-selected="false"
+            >
+                덤벨 로우
+            </a>
+        </li>
+        <li class="nav-item">
+            <a
+                class="nav-link"
+                id="lat-pull-down-tab"
+                data-toggle="tab"
+                href="#lat-pull-down-tab-pane"
+                role="tab"
+                aria-controls="lat-pull-down-tab-pane"
+                aria-selected="false"
+            >
+                랫풀 다운
+            </a>
+        </li>
+        <li class="nav-item">
+            <a
+                class="nav-link"
+                id="arm-pull-down-tab"
+                data-toggle="tab"
+                href="#arm-pull-down-tab-pane"
+                role="tab"
+                aria-controls="arm-pull-down-tab-pane"
+                aria-selected="false"
+            >
+                암풀 다운
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pull-up-tab" data-toggle="tab" href="#pull-up-tab-pane" role="tab" aria-controls="pull-up-tab-pane" aria-selected="false">
+                풀 업
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="backTabContent">
+        <div class="tab-pane fade show active" id="dead-lift-tab-pane" role="tabpanel" aria-labelledby="dead-lift-tab">
+            <div class="container mt-4">
+                <h2>데드 리프트</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <video width="100%" autoplay loop muted playsinline>
+                            <source src="https://planfit-images.s3.ap-northeast-2.amazonaws.com/training-videos-watermarked/1001.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>시작 자세</h4>
+                        <ol>
+                            <li>바벨과 3cm 떨어진 곳에 정강이를 위치시켜 주세요.</li>
+                            <li>다리는 어깨너비만큼 벌려 주세요.</li>
+                            <li>무릎과 고관절을 굽혀 바벨을 어깨너비로 잡아주세요.</li>
+                            <li>가슴을 펴고 등과 하체에 긴장감을 유지해 주세요.</li>
+                        </ol>
+                        <h4>운동 동작</h4>
+                        <ol>
+                            <li>뒤로 빠져있는 엉덩이가 앞으로 이동하면서 바벨을 들어 올려 주세요.</li>
+                            <li>바닥을 밀면서 발바닥 중심에 힘을 줍니다.</li>
+                            <li>완전히 일어났을 때 가슴을 펴면서 신체 후면 전체를 수축해 주세요.</li>
+                            <li>다시 엉덩이부터 뒤로 빼고 무릎을 굽히면서 시작 자세로 돌아와 주세요.</li>
+                        </ol>
+                        <h4>호흡법</h4>
+                        <ol>
+                            <li>상체를 올릴 때 숨을 내쉬고, 상체를 내릴 때 숨을 들이쉬세요.</li>
+                        </ol>
+                        <h4>주의사항</h4>
+                        <ol>
+                            <li>어깨가 앞으로 굽지 않도록 가슴을 계속 펴주세요.</li>
+                            <li>허리가 말리지 않도록 코어에 힘을 주세요.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="barbell-row-tab-pane" role="tabpanel" aria-labelledby="barbell-row-tab">
+            <div class="container mt-4">
+                <h2>바벨 로우</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <video width="100%" autoplay loop muted playsinline>
+                            <source src="https://planfit-images.s3.ap-northeast-2.amazonaws.com/training-videos-watermarked/1002.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>시작 자세</h4>
+                        <ol>
+                            <li>바벨이 정강이에 위치할 수 있게 높이를 조절해 주세요.</li>
+                            <li>다리는 어깨너비만큼 벌려 주세요.</li>
+                            <li>엉덩이를 뒤로 살짝 빼면서 자연스럽게 무릎을 굽혀 주세요.</li>
+                            <li>어깨너비만큼 바벨을 잡고 가슴을 펴주세요.</li>
+                        </ol>
+                        <h4>운동 동작</h4>
+                        <ol>
+                            <li>바벨이 수직으로 올라갈 수 있게 배꼽 쪽으로 당겨주세요.</li>
+                            <li>날개뼈를 모으면서 자연스럽게 팔꿈치와 손을 당겨주세요.</li>
+                            <li>무게를 등의 힘으로 버티며 무릎 아래까지 손을 내려주세요.</li>
+                        </ol>
+                        <h4>호흡법</h4>
+                        <ol>
+                            <li>팔을 올릴 때 숨을 내쉬고, 팔을 내릴 때 숨을 들이쉬세요.</li>
+                        </ol>
+                        <h4>주의사항</h4>
+                        <ol>
+                            <li>팔꿈치가 벌어지지 않도록 주의해 주세요.</li>
+                            <li>허리가 너무 세워지거나 위아래로 움직이지 않도록 주의해 주세요.</li>
+                            <li>허리가 말리지 않도록 코어에 힘을 주세요.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="dumbbell-row-tab-pane" role="tabpanel" aria-labelledby="dumbbell-row-tab">
+            <div class="container mt-4">
+                <h2>덤벨 로우</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <video width="100%" autoplay loop muted playsinline>
+                            <source src="https://planfit-images.s3.ap-northeast-2.amazonaws.com/training-videos-watermarked/1025.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>시작 자세</h4>
+                        <ol>
+                            <li>정강이에 위치에서 어깨너비로 덤벨을 잡아주세요.</li>
+                            <li>다리는 어깨너비만큼 벌려 주세요.</li>
+                            <li>엉덩이를 뒤로 살짝 빼면서 자연스럽게 무릎을 굽혀 주세요.</li>
+                        </ol>
+                        <h4>운동 동작</h4>
+                        <ol>
+                            <li>덤벨이 수직으로 올라갈 수 있게 옆구리 쪽으로 당겨주세요.</li>
+                            <li>날개뼈를 모으면서 자연스럽게 팔꿈치와 손을 당겨주세요.</li>
+                            <li>등의 힘으로 버티며 무릎 아래까지 손을 내려주세요.</li>
+                        </ol>
+                        <h4>호흡법</h4>
+                        <ol>
+                            <li>팔을 당길 때 숨을 내쉬고, 팔을 펼 때 숨을 들이쉬세요.</li>
+                        </ol>
+                        <h4>주의사항</h4>
+                        <ol>
+                            <li>팔꿈치가 벌어지지 않도록 주의해 주세요.</li>
+                            <li>허리가 너무 세워지거나 위아래로 움직이지 않도록 주의해 주세요.</li>
+                            <li>허리가 말리지 않도록 코어에 힘을 주세요.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="lat-pull-down-tab-pane" role="tabpanel" aria-labelledby="lat-pull-down-tab">
+            <div class="container mt-4">
+                <h2>랫 풀다운</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <video width="100%" autoplay loop muted playsinline>
+                            <source src="https://planfit-images.s3.ap-northeast-2.amazonaws.com/training-videos-watermarked/1005.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>시작 자세</h4>
+                        <ol>
+                            <li>무릎이 조이지 않도록 무릎 패드 높이를 조절해 주세요.</li>
+                            <li>어깨너비보다 조금 넓게 바를 잡아주세요.</li>
+                            <li>날개뼈를 모아 가슴을 펴주세요.</li>
+                        </ol>
+                        <h4>운동 동작</h4>
+                        <ol>
+                            <li>날개뼈를 모으면서 자연스럽게 팔을 당겨주세요.</li>
+                            <li>전완을 수직으로 내려주세요.</li>
+                            <li>바가 쇄골에 닿을 때까지 당겨주세요.</li>
+                            <li>천천히 팔을 올리면서 시작 자세로 돌아와 주세요.</li>
+                        </ol>
+                        <h4>호흡법</h4>
+                        <ol>
+                            <li>팔을 당길 때 숨을 내쉬고, 팔을 펼 때 숨을 들이쉬세요.</li>
+                        </ol>
+                        <h4>주의사항</h4>
+                        <ol>
+                            <li>어깨와 팔을 완전히 펴면 어깨에 무리가 갈 수 있으니 주의해 주세요.</li>
+                            <li>승모근이 따라 올라가지 않도록 주의해 주세요.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="arm-pull-down-tab-pane" role="tabpanel" aria-labelledby="arm-pull-down-tab">
+            <div class="container mt-4">
+                <h2>암 풀 다운</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <video width="100%" autoplay loop muted playsinline>
+                            <source src="https://planfit-images.s3.ap-northeast-2.amazonaws.com/training-videos-watermarked/1023.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>시작 자세</h4>
+                        <ol>
+                            <li>바를 눈높이에 맞춰 주세요.</li>
+                            <li>어깨너비보다 조금 넓게 바를 잡아주세요.</li>
+                            <li>팔을 쭉 펴고, 수직이 되는 위치에 서주세요.</li>
+                            <li>다리는 어깨너비만큼 벌리고, 엉덩이를 뒤로 좀 빼서 무릎을 굽혀 주세요.</li>
+                        </ol>
+                        <h4>운동 동작</h4>
+                        <ol>
+                            <li>겨드랑이에 힘을 주고 바가 몸쪽으로 오도록 당겨주세요.</li>
+                            <li>어깨 위치까지 천천히 다시 올려주세요.</li>
+                        </ol>
+                        <h4>호흡법</h4>
+                        <ol>
+                            <li>팔을 내릴 때 숨을 내쉬고, 팔을 올릴 때 숨을 들이쉬세요.</li>
+                        </ol>
+                        <h4>주의사항</h4>
+                        <ol>
+                            <li>팔이 굽어지지 않도록 주의해 주세요.</li>
+                            <li>팔이 어깨보다 높이 올라가지 않도록 주의해 주세요.</li>
+                            <li>승모근이 올라가지 않도록 주의해 주세요.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="pull-up-tab-pane" role="tabpanel" aria-labelledby="pull-up-tab">
+            <div class="container mt-4">
+                <h2>풀 업</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <video width="100%" autoplay loop muted playsinline>
+                            <source src="https://planfit-images.s3.ap-northeast-2.amazonaws.com/training-videos-watermarked/1003.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>시작 자세</h4>
+                        <ol>
+                            <li>어깨너비보다 조금 넓게 바를 잡아주세요.</li>
+                            <li>날개뼈를 모아 가슴을 펴주세요.</li>
+                        </ol>
+                        <h4>운동 동작</h4>
+                        <ol>
+                            <li>가슴이 바에 닿도록 팔을 당겨주세요.</li>
+                            <li>날개뼈를 모으면서 자연스럽게 팔을 당겨주세요.</li>
+                            <li>가슴을 편 상태로 천천히 시작 자세로 돌아와 주세요.</li>
+                        </ol>
+                        <h4>호흡법</h4>
+                        <ol>
+                            <li>팔을 당길 때 숨을 내쉬고, 팔을 펼 때 숨을 들이쉬세요.</li>
+                        </ol>
+                        <h4>주의사항</h4>
+                        <ol>
+                            <li>내려왔을 때 시작 자세가 풀리지 않도록 주의해 주세요.</li>
+                            <li>팔이 아닌 날개뼈를 움직이는 힘으로 올라가 주세요.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,55 @@
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}"
+>
+  <head>
+    <title>FitConnect</title>
+    <style>
+      .get-started-btn {
+        background-color: transparent;
+        color: #ff4500;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 12px 30px;
+        border-radius: 30px;
+        border: 2px solid #ff4500;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 69, 0, 0.2);
+      }
+
+      .get-started-btn:hover {
+        background-color: #ff4500;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(255, 69, 0, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <div layout:fragment="content">
+      <!-- HERO -->
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto col-12">
+            <div class="hero-text mt-5 text-center">
+              <h6 data-aos="fade-up" data-aos-delay="300">
+                New way to build a healthy lifestyle!
+              </h6>
+              <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">
+                Upgrade your body with FitConnect
+              </h1>
+              <a
+                th:href="@{/user/login}"
+                class="btn custom-btn get-started-btn"
+                data-aos="fade-up"
+                data-aos-delay="600"
+                >GET STARTED</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

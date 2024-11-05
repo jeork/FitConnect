@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>회원가입</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/static/css/bootstrap.min.css}"
+    />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/static/css/tooplate-gymso-style.css}"
+    />
+    <style>
+      .custom-card {
+        background-color: #f0f0f0;
+        border: none;
+        border-radius: 10px;
+      }
+      .signup-button {
+        background-color: #343a40;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+      .signup-button:hover {
+        color: rgb(241, 58, 17);
+      }
+      .signup-section {
+        padding-top: 80px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+      @media (max-width: 768px) {
+        .signup-section {
+          padding-top: 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+    <section class="hero signup-section" id="home">
+      <div class="bg-overlay"></div>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg p-4 custom-card">
+              <h4 class="card-title text-center mb-4">
+                <strong>회원가입</strong>
+              </h4>
+              <form
+                th:action="@{/user/signup}"
+                th:object="${userCreateForm}"
+                method="post"
+              >
+                <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+                <div class="mb-3">
+                  <label for="username" class="form-label">사용자</label>
+                  <input
+                    type="text"
+                    th:field="*{username}"
+                    class="form-control"
+                    id="username"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="password1" class="form-label">비밀번호</label>
+                  <input
+                    type="password"
+                    th:field="*{password1}"
+                    class="form-control"
+                    id="password1"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="password2" class="form-label"
+                    >비밀번호 확인</label
+                  >
+                  <input
+                    type="password"
+                    th:field="*{password2}"
+                    class="form-control"
+                    id="password2"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">이메일</label>
+                  <input
+                    type="email"
+                    th:field="*{email}"
+                    class="form-control"
+                    id="email"
+                  />
+                </div>
+                <button type="submit" class="btn signup-button w-100">
+                  회원 가입
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script th:src="@{/static/js/jquery.min.js}"></script>
+    <script th:src="@{/static/js/popper.min.js}"></script>
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+  </body>
+</html>

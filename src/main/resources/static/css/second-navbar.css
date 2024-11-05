@@ -1,0 +1,27 @@
+.second-navbar {
+    background-color: rgba(28, 30, 34);
+    padding: 10px;
+}
+
+.second-navbar .nav {
+    justify-content: center;
+    gap: 20px; /* 각 메뉴 항목 간의 간격 설정 */
+}
+
+.second-navbar .nav-item .nav-link {
+    color: #ffffff; /* 링크 글자 색 */
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.second-navbar .nav-item .nav-link:hover {
+    background-color: #f13a11; /* Hover 시 배경 색 */
+    color: #ffffff; /* Hover 시 글자 색 */
+}
+
+.second-navbar .nav-item .active {
+    background-color: #f13a11; /* 활성화된 링크의 배경 색 */
+    color: #ffffff; /* 활성화된 링크의 글자 색 */
+}

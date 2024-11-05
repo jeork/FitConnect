@@ -1,0 +1,66 @@
+/* 전체 페이지 배경 */
+body {
+    background-color: #ffffff; /* 배경 흰색 */
+    color: #000000; /* 텍스트 검정색 */
+}
+
+/* 메인 섹션 설정 */
+.main-section {
+    color: #000000; /* 텍스트 검정색 */
+    padding: 60px 0;
+}
+
+.featured-content h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.featured-content p.lead {
+    font-size: 1.25rem;
+}
+
+.featured-content hr.custom-hr-line {
+    border: 2px solid black !important; /* 선의 두께와 색상을 강제로 적용 */
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+/* 세로로 배치된 카드들 */
+.vertical-cards {
+    display: flex;
+    flex-direction: column;
+}
+
+.vertical-cards .card {
+    border-radius: 10px;
+    background-color: #ffffff; /* 카드 배경 흰색 */
+    text-align: center; /* 카드 안의 텍스트와 내용 가운데 정렬 */
+    border: 5px solid #cccccc; /* 회색 테두리 */
+    padding: 15px;
+    transition: transform 0.2s; /* 카드가 살짝 올라오는 효과 추가 */
+}
+
+.vertical-cards .card:hover {
+    transform: translateY(-10px); /* 호버 시 살짝 위로 올라가게 */
+}
+
+.vertical-cards .card-body {
+    text-align: center;
+}
+
+.vertical-cards .card .btn-outline-dark {
+    border-color: #000000;
+    color: #000000;
+}
+
+.vertical-cards .card .btn-outline-dark:hover {
+    background-color: #b2ff00;
+    color: #000;
+}
+
+/* 이미지 자리 초록색 */
+.image-placeholder {
+    height: 100%;
+    margin-top: 75px; /* 이미지와 위쪽 선 간의 여백 */
+}
