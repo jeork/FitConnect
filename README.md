@@ -1,3 +1,7 @@
+
+<h1> [SKKU AI 과정] </h1>
+
+
 ![header](https://capsule-render.vercel.app/api?type=venom&color=auto&height=300&section=header&text=FitConnect&fontSize=90)
 
 <h1>FitConnect의 주요 기능</h1>
