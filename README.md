@@ -14,10 +14,10 @@
 
 <h1>Stacks</h1>
 
-<h2>Environment</h2>
+<h4>Environment</h2>
 
 
-<h2>Development</h2>
+<h4>Development</h2>
 
 <h1>Studying</h1>
 
