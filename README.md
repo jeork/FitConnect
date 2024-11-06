@@ -3,4 +3,4 @@
 - Spring Boot : 3.2.8 (Gradle)
 - Python : 3.11.x
 
-<img src="https://img.shields.io/badge/리액트-61DAFB?style=flat&logo=React&logoColor=white"/>
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=jeork)](https://github.com/anuraghazra/github-readme-stats)
