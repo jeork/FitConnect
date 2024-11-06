@@ -4,4 +4,5 @@
 - Python : 3.11.x
 
 
- <img src="https://img.shields.io/badge/Javascript-3178C6?style=flat&logo=javascript&logoColor=white"/>
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white"/>
+
