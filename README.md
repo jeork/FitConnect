@@ -3,7 +3,7 @@
 
 
 [![Solved.ac
-프로필](http://mazassumnida.wtf/api/v2/generate_badge?boj=jeork)](https://solved.ac/jeork)
+프로필](http://mazassumnida.wtf/api/v2/generate_badge?boj=asdasd031)](https://solved.ac/asdasd031)
 
 - application.properties 파일에서 DB 설정 로컬 환경에 맞춰 적용해주기
 - Java : JDK 21
