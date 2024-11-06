@@ -12,6 +12,7 @@
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=jeork)](https://github.com/anuraghazra/github-readme-stats)
 
+<img alt="Html" src ="https://img.shields.io/badge/javascript.svg?&style=for-the-badge&logo=JavaScript&logoColor=black"/>
 
 
 <h1>Studying</h1>
