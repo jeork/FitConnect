@@ -3,6 +3,4 @@
 - Spring Boot : 3.2.8 (Gradle)
 - Python : 3.11.x
 
-
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white"/>
-
+<img src="https://img.shields.io/badge/리액트-61DAFB?style=flat&logo=React&logoColor=white"/>
