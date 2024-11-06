@@ -4,7 +4,7 @@
 
 
 
-	https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white
+![js](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white)
 
  
 - application.properties 파일에서 DB 설정 로컬 환경에 맞춰 적용해주기
