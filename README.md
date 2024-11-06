@@ -1,6 +1,6 @@
 ![header](https://capsule-render.vercel.app/api?type=venom&color=auto&height=300&section=header&text=FitConnect&fontSize=90)
 
-FitConnect의 주요 기능
+<h1>FitConnect의 주요 기능</h1>
 
 1. 전문적인 운동 가이드와 함께 개인 별로 루틴을 설계하고 기록할수 있는 기능
 2. 머신러닝을 활용하여 영양 균형이 잡힌 개인 별 맞춤 식단 추천
